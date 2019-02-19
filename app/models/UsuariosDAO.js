@@ -12,8 +12,6 @@ UsuariosDAO.prototype.inserirUsuario = function(usuario){
             var senha_criptografada = crypto.createHash('md5').update(usuario.senha).digest('hex');
             usuario.senha = senha_criptografada;
             // var senha2 = crypto.
-            console.log(senha_criptografada);
-            
 
             collection.insert(usuario);
             mongoClient.close();
