@@ -1,10 +1,10 @@
-function JogoDAO(connection){
+function JogoDAO(connection) {
     this._connection = connection();
 }
 
-JogoDAO.prototype.gerarParametros = function(usuario){
-    this._connection.open(function(err, mongoClient){
-        mongoClient.collection('jogo', function(err, collection){
+JogoDAO.prototype.gerarParametros = function (usuario) {
+    this._connection.open(function (err, mongoClient) {
+        mongoClient.collection('jogo', function (err, collection) {
 
             collection.insert({
                 usuario: usuario,
@@ -18,9 +18,22 @@ JogoDAO.prototype.gerarParametros = function(usuario){
 
             mongoClient.close();
         })
-    });    
+    });
 }
 
-module.exports = function(){
+JogoDAO.prototype.iniciaJogo = function (usuario) {
+    this._connection.open(function (err, mongoClient) {
+        mongoClient.collection('jogo', function (err, collection) {
+            collection.find({ usuario: { $eq: usuario.usuario } }).toArray(function (err, result) {
+
+
+
+                mongoClient.close();
+            });
+        });
+    });
+}
+
+module.exports = function () {
     return JogoDAO;
 }
