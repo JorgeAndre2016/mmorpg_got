@@ -8,12 +8,24 @@ module.exports = function(application){
 	});
 
 	application.get('/suditos', function(req, res){
+		if (req.session.autorizado !== true) {
+			res.send("Usuário precisa fazer login");
+			return;
+		};
 		application.app.controllers.jogo.suditos(application, req, res);
 	});
 	application.get('/pergaminhos', function(req, res){
+		if (req.session.autorizado !== true) {
+			res.send("Usuário precisa fazer login");
+			return;
+		};
 		application.app.controllers.jogo.pergaminhos(application, req, res);
 	});
 	application.post('/order_acao_sudito', function(req, res){
+		if (req.session.autorizado !== true) {
+			res.send("Usuário precisa fazer login");
+			return;
+		};
 		application.app.controllers.jogo.order_acao_sudito(application, req, res);
 	});
 }
