@@ -14,7 +14,7 @@ module.exports.jogo = function (application, req, res) {
     var connection = application.config.dbConnection;
     var JogoDAO = new application.app.models.JogoDAO(connection);
 
-    JogoDAO.iniciaJogo(res, usuario, casa);
+    JogoDAO.iniciaJogo(res, usuario, casa, comando_invalido);
 }
 
 module.exports.sair = function (application, req, res) {
